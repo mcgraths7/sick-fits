@@ -2,10 +2,11 @@
 import React from 'react';
 import Link from 'next/link';
 
-const Home = props => (
+const Nav = () => (
   <div>
-    <p>Hello There!</p>
-    <Link href="/">Sell!</Link>
+    <Link href="/">Home</Link>
+    <Link href="/sell">Sell!</Link>
   </div>
 );
-export default Home;
+
+export default Nav;
