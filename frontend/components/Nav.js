@@ -1,12 +1,21 @@
-/* eslint-disable react/jsx-filename-extension */
-import React from 'react';
 import Link from 'next/link';
+import NavStyles from './styles/NavStyles';
 
 const Nav = () => (
-  <div>
-    <Link href="/">Home</Link>
-    <Link href="/sell">Sell!</Link>
-  </div>
+  <NavStyles>
+    <Link href="/items">
+      <a>Items</a>
+    </Link>
+    <Link href="/sell">
+      <a>Sell</a>
+    </Link>
+    <Link href="/signup">
+      <a>Sign Up</a>
+    </Link>
+    <Link href="/orders">
+      <a>Account</a>
+    </Link>
+  </NavStyles>
 );
 
 export default Nav;

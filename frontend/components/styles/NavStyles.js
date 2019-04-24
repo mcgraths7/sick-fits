@@ -29,7 +29,7 @@ const NavStyles = styled.ul`
       height: 100%;
       left: 0;
       position: absolute;
-      transform: skew(-20deg);
+      transform: skew(-20deg, 0deg);
       top: 0;
       bottom: 0;
     }
@@ -51,9 +51,9 @@ const NavStyles = styled.ul`
       &:after {
         width: calc(100% - 60px);
       }
-    @media (max-width: 700px) {
+      @media (max-width: 700px) {
         width: calc(100% - 10px);
-    }
+      }
     }
   }
   @media (max-width: 1300px) {
