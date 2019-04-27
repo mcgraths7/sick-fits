@@ -1,9 +1,9 @@
-/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
+import Items from '../components/Items';
 
 const Home = props => (
   <div>
-    <p>Hello There!</p>
+    <Items />
   </div>
 );
 export default Home;
