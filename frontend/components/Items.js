@@ -18,10 +18,10 @@ const ItemsList = styled.div`
   margin: 0 auto;
 `;
 
-// ? Queries go here
+// * Queries go here
 
-const ALL_ITEMS_QUERY = gql`
-  query ALL_ITEMS_QUERY {
+const QUERY_ALL_ITEMS = gql`
+  query QUERY_ALL_ITEMS {
     items {
       id
       title
@@ -33,20 +33,17 @@ const ALL_ITEMS_QUERY = gql`
   }
 `;
 
-// ? Component rendering goes here
+// * Component rendering goes here
 
 export default class Items extends Component {
   render() {
     return (
       <Center>
-        <Query query={ALL_ITEMS_QUERY}>
+        <Query query={QUERY_ALL_ITEMS}>
           {payload => {
             const { data, error, loading } = payload;
             if (loading) return <p>Loading...</p>;
-            if (error)
-              return (
-                <p>There was a problem... it looks like {error.message}</p>
-              );
+            if (error) return <p>There was a problem... {error.message}</p>;
             return (
               <ItemsList>
                 {data.items.map(item => (
@@ -62,3 +59,5 @@ export default class Items extends Component {
     );
   }
 }
+
+export { QUERY_ALL_ITEMS };
