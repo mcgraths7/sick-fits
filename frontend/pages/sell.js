@@ -1,9 +1,9 @@
-/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
+import CreateItem from '../components/CreateItem';
 
 const Sell = props => (
   <div>
-    <h1>Consume!</h1>
+    <CreateItem />
   </div>
 );
 export default Sell;

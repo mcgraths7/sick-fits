@@ -5,6 +5,7 @@ import NProgress from 'nprogress';
 import styled from 'styled-components';
 import Nav from './Nav';
 
+// ? These methods control the progress bar at the top when the page is loading
 Router.onRouteChangeStart = () => {
   NProgress.start();
 };
