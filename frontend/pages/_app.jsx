@@ -13,12 +13,11 @@ class MyApp extends App {
     }
 
     // ? This exposes the query to the user
-    console.log(pageProps);
-    console.log(ctx);
     pageProps.query = ctx.query;
 
     return { pageProps };
   }
+
   render() {
     const { Component, apollo, pageProps } = this.props;
     return (

@@ -3,10 +3,10 @@ import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import Router from 'next/router';
 import Form from './styles/Form';
-import formatMoney from '../lib/formatMoney';
+// import formatMoney from '../lib/formatMoney';
 import Error from './ErrorMessage';
 
-/* 
+/*
   ? This creates the allows us to use the createItem mutation we exposed via yoga
   ? The $ syntax is GraphQL method of declaring variables
   ? I add mutation or query as the prefix to make it easy to discern at a glance what it is
@@ -30,35 +30,31 @@ const MUTATION_CREATE_ITEM = gql`
     }
   }
 `;
-
 class CreateItem extends Component {
   state = {};
 
-  /* 
-    ? If the field type is a number, then parse it, rather than leaving it as a string, 
+  /*
+    ? If the field type is a number, then parse it, rather than leaving it as a string,
     ? then add that field to state
   */
-  handleChange = e => {
+  handleChange = (e) => {
     const { name, type, value } = e.target;
     const val = type === 'number' ? parseFloat(value) : value;
     this.setState({ [name]: val });
   };
 
-  uploadFile = async e => {
-    const files = e.target.files;
+  uploadFile = async (e) => {
+    const { files } = e.target;
     const data = new FormData();
     // ? files can hold more than one url, but we are only uploading one, so we select the 0th index
     data.append('file', files[0]);
     // ? Cloudinary API requires an upload preset for unsigned uploads. sickfits is the name of our bucket
     data.append('upload_preset', 'sickfits');
 
-    const res = await fetch(
-      'https://api.cloudinary.com/v1_1/punintended/image/upload',
-      {
-        method: 'POST',
-        body: data,
-      }
-    );
+    const res = await fetch('https://api.cloudinary.com/v1_1/punintended/image/upload', {
+      method: 'POST',
+      body: data,
+    });
 
     const file = await res.json();
     // ? file is the normal upload transformation. file.eager is our background transformation
@@ -67,13 +63,16 @@ class CreateItem extends Component {
       largeImage: file.eager[0].secure_url,
     });
   };
+
   render() {
-    const { title, price, description, image } = this.state;
+    const {
+      title, price, description, image,
+    } = this.state;
     return (
       <Mutation mutation={MUTATION_CREATE_ITEM} variables={this.state}>
         {(createItem, { loading, error }) => (
           <Form
-            onSubmit={async e => {
+            onSubmit={async (e) => {
               // ? Stop the form from submitting
               e.preventDefault();
               // ? call the mutation
@@ -83,7 +82,8 @@ class CreateItem extends Component {
                 pathname: '/item',
                 query: { id: res.data.createItem.id },
               });
-            }}>
+            }}
+          >
             <Error error={error} />
             <fieldset disabled={loading} aria-busy={loading}>
               <label htmlFor="file">
@@ -96,9 +96,9 @@ class CreateItem extends Component {
                   required
                   onChange={this.uploadFile}
                 />
-                {/* 
+                {/*
                 ? if there is an image url in state, then add an image tag
-                ? underneath the label 
+                ? underneath the label
                 */}
                 {image && <img src={image} alt="upload preview" />}
               </label>

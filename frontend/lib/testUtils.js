@@ -77,10 +77,5 @@ class LocalStorageMock {
 }
 
 export {
-  LocalStorageMock,
-  fakeItem,
-  fakeUser,
-  fakeCartItem,
-  fakeOrder,
-  fakeOrderItem,
+  LocalStorageMock, fakeItem, fakeUser, fakeCartItem, fakeOrder, fakeOrderItem,
 };

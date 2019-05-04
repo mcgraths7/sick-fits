@@ -1,6 +1,6 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import styled, { ThemeProvider, injectGlobal } from 'styled-components';
+import PropTypes from 'prop-types';
 import Header from './Header';
 import Meta from './Meta';
 
@@ -64,6 +64,14 @@ const Page = (props) => {
       </StyledPage>
     </ThemeProvider>
   );
+};
+
+Page.defaultProps = {
+  children: {},
+};
+
+Page.propTypes = {
+  children: PropTypes.shape({}),
 };
 
 export default Page;
